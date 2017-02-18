@@ -1,6 +1,6 @@
 Name: keepassxc
 Version: 2.1.2
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: Cross-platform password manager
 Group: User Interface/Desktops
 License: GPLv2+
@@ -56,16 +56,15 @@ desktop-file-install \
 	--dir %{buildroot}%{_datadir}/applications \
 	--delete-original \
 	--add-mime-type application/x-keepass \
-	%{buildroot}%{_datadir}/applications/%{name}.desktop
+	%{buildroot}%{_datadir}/applications/%{name}K].desktop
  
 # Associate KDB* files
-#cat > x-keepass2.desktop << EOF
 cat > x-keepassxc.desktop << EOF
 [Desktop Entry]
 Comment=
 Hidden=false
 Icon=keepassxc.png
-MimeType=application/x-keepass2
+MimeType=application/x-keepassxc
 Patterns=*.kdb;*.KDB;*.kdbx;*.KDBX*
 Type=MimeType
 EOF
