@@ -56,7 +56,7 @@ desktop-file-install \
 	--dir %{buildroot}%{_datadir}/applications \
 	--delete-original \
 	--add-mime-type application/x-keepass \
-	%{buildroot}%{_datadir}/applications/%{name}K].desktop
+	%{buildroot}%{_datadir}/applications/%{name}.desktop
  
 # Associate KDB* files
 cat > x-keepassxc.desktop << EOF
