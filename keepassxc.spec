@@ -1,11 +1,12 @@
 Name: keepassxc
 Version: 2.1.2
-Release: 3%{?dist}
+Release: 4%{?dist}
 Summary: Cross-platform password manager
 Group: User Interface/Desktops
 License: GPLv2+
 URL: https://keepassxreboot.github.io/
-Source0:https://github.com/keepassxreboot/keepassxc/archive/%{name}-%{version}.tar.gz
+Source0: https://github.com/keepassxreboot/keepassxc/releases/download/%{version}/keepassxc-%{version}-src.tar.xz
+Patch0: 0001-Make-Salsa20-optional-if-building-against-older-libg.patch
 BuildRequires: qt5-qtbase-devel > 5.1
 BuildRequires: qt5-linguist
 BuildRequires: libXtst-devel
@@ -35,6 +36,8 @@ KeePassXC is a community fork of KeePassX, the cross-platform port of KeePass fo
  
 %prep
 %setup -qn %{name}-%{version}
+
+%patch0 -p1
 
 %build
 mkdir build
@@ -107,6 +110,10 @@ desktop-file-validate %{_datadir}/applications/keepassxc.desktop &> /dev/null ||
 %{_libdir}/keepassxc/*.so
  
 %changelog
+* Sat Feb 18 2017 Toni Spets - 2.1.2-4
+- Use official src.tar.xz archive with publicly verifiable digest
+- Add backwards compatibility for EL7
+
 * Fri Feb 17 2017 Bugzy Little <bugzylittle@gmail.com> - 2.1.2
 - Fix conflict with keepassx by renaming mime
 
