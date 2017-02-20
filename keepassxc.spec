@@ -1,11 +1,11 @@
 Name: keepassxc
 Version: 2.1.2
-Release: 3%{?dist}
+Release: 4%{?dist}
 Summary: Cross-platform password manager
 Group: User Interface/Desktops
 License: GPLv2+
 URL: https://keepassxreboot.github.io/
-Source0:https://github.com/keepassxreboot/keepassxc/archive/%{name}-%{version}.tar.gz
+Source0: https://github.com/keepassxreboot/keepassxc/releases/download/%{version}/keepassxc-%{version}-src.tar.xz
 BuildRequires: qt5-qtbase-devel > 5.1
 BuildRequires: qt5-linguist
 BuildRequires: libXtst-devel
@@ -14,14 +14,22 @@ BuildRequires: desktop-file-utils
 BuildRequires: cmake
 BuildRequires: liboath
 BuildRequires: liboath-devel
+%if 0%{el7}
+BuildRequires: libgcrypt16-devel
+%else
 BuildRequires: libgcrypt-devel
+%endif
 BuildRequires: libmicrohttpd-devel
 BuildRequires: qjson-devel
 BuildRequires: libevent-devel
 BuildRequires: libsecret-devel
 BuildRequires: qt5-qtx11extras-devel
 Requires: hicolor-icon-theme
+%if 0%{el7}
+Requires: libgcrypt16
+%else
 Requires: libgcrypt
+%endif
 Requires: libmicrohttpd 
 Requires: libevent
 Requires: zlib
@@ -107,6 +115,10 @@ desktop-file-validate %{_datadir}/applications/keepassxc.desktop &> /dev/null ||
 %{_libdir}/keepassxc/*.so
  
 %changelog
+* Mon Feb 20 2017 Toni Spets <toni.spets@iki.fi> - 2.1.2-4
+- Use official tar.xz as the source
+- Depend on libgcrypt16 package on C7
+
 * Fri Feb 17 2017 Bugzy Little <bugzylittle@gmail.com> - 2.1.2
 - Fix conflict with keepassx by renaming mime
 
