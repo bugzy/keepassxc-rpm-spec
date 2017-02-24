@@ -14,22 +14,19 @@ BuildRequires: desktop-file-utils
 BuildRequires: cmake
 BuildRequires: liboath
 BuildRequires: liboath-devel
-%if 0%{?el7}
-BuildRequires: libgcrypt16-devel
-%else
-BuildRequires: libgcrypt-devel
-%endif
 BuildRequires: libmicrohttpd-devel
 BuildRequires: qjson-devel
 BuildRequires: libevent-devel
 BuildRequires: libsecret-devel
 BuildRequires: qt5-qtx11extras-devel
-Requires: hicolor-icon-theme
 %if 0%{?el7}
+BuildRequires: libgcrypt16-devel
 Requires: libgcrypt16
 %else
+BuildRequires: libgcrypt-devel
 Requires: libgcrypt
 %endif
+Requires: hicolor-icon-theme
 Requires: libmicrohttpd 
 Requires: libevent
 Requires: zlib
