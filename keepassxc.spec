@@ -14,7 +14,7 @@ BuildRequires: desktop-file-utils
 BuildRequires: cmake
 BuildRequires: liboath
 BuildRequires: liboath-devel
-%if 0%{el7}
+%if 0%{?el7}
 BuildRequires: libgcrypt16-devel
 %else
 BuildRequires: libgcrypt-devel
@@ -25,7 +25,7 @@ BuildRequires: libevent-devel
 BuildRequires: libsecret-devel
 BuildRequires: qt5-qtx11extras-devel
 Requires: hicolor-icon-theme
-%if 0%{el7}
+%if 0%{?el7}
 Requires: libgcrypt16
 %else
 Requires: libgcrypt
