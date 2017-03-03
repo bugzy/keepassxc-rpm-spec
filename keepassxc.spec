@@ -1,6 +1,6 @@
 Name: keepassxc
-Version: 2.1.2
-Release: 5%{?dist}
+Version: 2.1.3
+Release: 1%{?dist}
 Summary: Cross-platform password manager
 Group: User Interface/Desktops
 License: GPLv2+
@@ -112,6 +112,9 @@ desktop-file-validate %{_datadir}/applications/keepassxc.desktop &> /dev/null ||
 %{_libdir}/keepassxc/*.so
  
 %changelog
+* Fri Feb 24 2017 Bugzy Little <bugzylittle@gmail.com> - 2.1.3-1
+- Update to v2.1.3
+
 * Fri Feb 24 2017 Bugzy Little <bugzylittle@gmail.com> - 2.1.2-5
 - Fix if conditions
 - trigger update
