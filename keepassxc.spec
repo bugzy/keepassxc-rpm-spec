@@ -15,20 +15,12 @@ BuildRequires: libXi-devel
 BuildRequires: qt5-qtx11extras-devel
 BuildRequires: libyubikey-devel
 BuildRequires: ykpers-devel
+BuildRequires: zlib-devel
 %if 0%{?el7}
 BuildRequires: libgcrypt16-devel
-Requires: libgcrypt16
 %else
 BuildRequires: libgcrypt-devel >= 1.6
-Requires: libgcrypt
 %endif
-Requires: hicolor-icon-theme
-Requires: libmicrohttpd 
-Requires: libevent
-Requires: zlib
-Requires: libXi
-Requires: libXtst
-Requires: qt5-qtx11extras
  
 %description
 KeePassXC is a community fork of KeePassX
