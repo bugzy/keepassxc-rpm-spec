@@ -6,11 +6,10 @@ Group: User Interface/Desktops
 License: Boost and BSD and CC0 and GPLv3 and LGPLv2 and LGPLv2+ and LGPLv3+ and Public Domain
 URL: https://keepassxc.org/
 Source0: https://github.com/keepassxreboot/keepassxc/releases/download/%{version}/keepassxc-%{version}-src.tar.xz
-BuildRequires:  cmake
+BuildRequires:  cmake >= 3.1
 BuildRequires:  desktop-file-utils
 BuildRequires:  qt5-qtbase-devel >= 5.2
 BuildRequires:  qt5-qttools-devel >= 5.2
-BuildRequires:  libmicrohttpd-devel
 BuildRequires:  libXi-devel
 BuildRequires:  libXtst-devel
 BuildRequires:  qt5-qtx11extras-devel
