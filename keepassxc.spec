@@ -6,16 +6,17 @@ Group: User Interface/Desktops
 License: Boost and BSD and CC0 and GPLv3 and LGPLv2 and LGPLv2+ and LGPLv3+ and Public Domain
 URL: https://keepassxc.org/
 Source0: https://github.com/keepassxreboot/keepassxc/releases/download/%{version}/keepassxc-%{version}-src.tar.xz
-BuildRequires: qt5-qtbase-devel > 5.2
-BuildRequires: qt5-qttools-devel >= 5.2
-BuildRequires: libXtst-devel
-BuildRequires: cmake
-BuildRequires: libmicrohttpd-devel
-BuildRequires: libXi-devel
-BuildRequires: qt5-qtx11extras-devel
-BuildRequires: libyubikey-devel
-BuildRequires: ykpers-devel
-BuildRequires: zlib-devel
+BuildRequires:  cmake
+BuildRequires:  desktop-file-utils
+BuildRequires:  qt5-qtbase-devel >= 5.2
+BuildRequires:  qt5-qttools-devel >= 5.2
+BuildRequires:  libmicrohttpd-devel
+BuildRequires:  libXi-devel
+BuildRequires:  libXtst-devel
+BuildRequires:  qt5-qtx11extras-devel
+BuildRequires:  zlib-devel
+BuildRequires:  libyubikey-devel
+BuildRequires:  ykpers-devel
 %if 0%{?el7}
 BuildRequires: libgcrypt16-devel
 %else
