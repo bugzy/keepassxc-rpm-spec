@@ -1,29 +1,25 @@
 Name: keepassxc
-Version: 2.1.4
-Release: 1%{?dist}
+Version: 2.2.0
+Release: 0%{?dist}
 Summary: Cross-platform password manager
 Group: User Interface/Desktops
-License: GPLv2+
-URL: https://keepassxreboot.github.io/
+License: Boost and BSD and CC0 and GPLv3 and LGPLv2 and LGPLv2+ and LGPLv3+ and Public Domain
+URL: https://keepassxc.org/
 Source0: https://github.com/keepassxreboot/keepassxc/releases/download/%{version}/keepassxc-%{version}-src.tar.xz
-BuildRequires: qt5-qtbase-devel > 5.1
-BuildRequires: qt5-linguist
+BuildRequires: qt5-qtbase-devel > 5.2
+BuildRequires: qt5-qttools-devel >= 5.2
 BuildRequires: libXtst-devel
-BuildRequires: ImageMagick
-BuildRequires: desktop-file-utils
 BuildRequires: cmake
-BuildRequires: liboath
-BuildRequires: liboath-devel
 BuildRequires: libmicrohttpd-devel
-BuildRequires: qjson-devel
-BuildRequires: libevent-devel
-BuildRequires: libsecret-devel
+BuildRequires: libXi-devel
 BuildRequires: qt5-qtx11extras-devel
+BuildRequires: libyubikey-devel
+BuildRequires: ykpers-devel
 %if 0%{?el7}
 BuildRequires: libgcrypt16-devel
 Requires: libgcrypt16
 %else
-BuildRequires: libgcrypt-devel
+BuildRequires: libgcrypt-devel >= 1.6
 Requires: libgcrypt
 %endif
 Requires: hicolor-icon-theme
@@ -35,7 +31,21 @@ Requires: libXtst
 Requires: qt5-qtx11extras
  
 %description
-KeePassXC is a community fork of KeePassX, the cross-platform port of KeePass for Windows. Every feature is cross-platform and tested to give users the same feel on each operating system, including the loved auto-type feature.
+KeePassXC is a community fork of KeePassX
+KeePassXC is an application for people with extremely high demands on secure
+personal data management.
+KeePassXC saves many different information e.g. user names, passwords, urls,
+attachemts and comments in one single database. For a better management
+user-defined titles and icons can be specified for each single entry.
+Furthermore the entries are sorted in groups, which are customizable as well.
+The integrated search function allows to search in a single group or the
+complete database.
+KeePassXC offers a little utility for secure password generation. The password
+generator is very customizable, fast and easy to use. Especially someone who
+generates passwords frequently will appreciate this feature.
+The complete database is always encrypted either with AES (alias Rijndael) or
+Twofish encryption algorithm using a 256 bit key. Therefore the saved
+information can be considered as quite safe.
 
  
 %prep
@@ -49,7 +59,9 @@ cmake .. \
 	-DCMAKE_VERBOSE_MAKEFILE=OFF \
 	-DWITH_TESTS=OFF \
 	-DWITH_XC_HTTP=ON \
-	-DWITH_XC_AUTOTYPE=ON
+	-DWITH_XC_YUBIKEY=ON \
+	-DWITH_XC_AUTOTYPE=ON \
+	-DCMAKE_BUILD_TYPE=Release
  
 make %{?_smp_mflags}
  
@@ -60,7 +72,7 @@ make install DESTDIR=%{buildroot}
 desktop-file-install \
 	--dir %{buildroot}%{_datadir}/applications \
 	--delete-original \
-	--add-mime-type application/x-keepass \
+	--add-mime-type application/x-keepassxc \
 	%{buildroot}%{_datadir}/applications/%{name}.desktop
  
 # Associate KDB* files
@@ -83,27 +95,24 @@ ctest -V %{?_smp_mflags}
 
 %post
 touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
-touch --no-create %{_datadir}/mime/packages &> /dev/null || :
 update-desktop-database &> /dev/null ||:
  
 %postun
 if [ $1 -eq 0 ] ; then
     touch --no-create %{_datadir}/icons/hicolor &>/dev/null
     gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-    touch --no-create %{_datadir}/mime/packages &> /dev/null || :
-    update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 fi
 update-desktop-database &> /dev/null ||:
 
 %posttrans
 gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 desktop-file-validate %{_datadir}/applications/keepassxc.desktop &> /dev/null || :
 
 %files
 %doc CHANGELOG
 %license COPYING LICENSE*
 %{_bindir}/keepassxc
+%{_bindir}/keepassxc-cli
 %{_datadir}/keepassxc
 %{_datadir}/applications/*.desktop
 %{_datadir}/mimelnk/application/*.desktop
@@ -112,6 +121,13 @@ desktop-file-validate %{_datadir}/applications/keepassxc.desktop &> /dev/null ||
 %{_libdir}/keepassxc/*.so
  
 %changelog
+* Sun Jun 25 2017 Bugzy Little <bugzylittle@gmail.com> - 2.2.0-0
+- Update to v2.2.0
+
+* Sun Apr 9 2017 Bugzy Little <bugzylittle@gmail.com> - 2.1.4-0
+- Change discription to match official package
+- Modifying release tag so that there is no conflict with official package
+
 * Sun Apr 9 2017 Bugzy Little <bugzylittle@gmail.com> - 2.1.4-1
 - Update to v2.1.4
 
