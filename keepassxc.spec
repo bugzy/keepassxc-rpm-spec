@@ -1,6 +1,6 @@
 Name: keepassxc
 Version: 2.2.0
-Release: 0%{?dist}
+Release: 1%{?dist}
 Summary: Cross-platform password manager
 Group: User Interface/Desktops
 License: Boost and BSD and CC0 and GPLv3 and LGPLv2 and LGPLv2+ and LGPLv3+ and Public Domain
@@ -15,13 +15,8 @@ BuildRequires:  qt5-qtx11extras-devel
 BuildRequires:  zlib-devel
 BuildRequires:  libyubikey-devel
 BuildRequires:  ykpers-devel
-%if 0%{?el7}
-BuildRequires:  libgcrypt16-devel
-BuildRequires:  cmake3
-%else
 BuildRequires:  libgcrypt-devel >= 1.6
 BuildRequires:  cmake >= 3.1
-%endif
  
 %description
 KeePassXC is a community fork of KeePassX
@@ -47,7 +42,8 @@ information can be considered as quite safe.
 %build
 mkdir build
 cd build
-cmake .. \
+
+%cmake .. \
 	-DCMAKE_INSTALL_PREFIX=/usr \
 	-DCMAKE_VERBOSE_MAKEFILE=OFF \
 	-DWITH_TESTS=OFF \
@@ -114,7 +110,7 @@ desktop-file-validate %{_datadir}/applications/keepassxc.desktop &> /dev/null ||
 %{_libdir}/keepassxc/*.so
  
 %changelog
-* Sun Jun 25 2017 Bugzy Little <bugzylittle@gmail.com> - 2.2.0-0
+* Sun Jun 25 2017 Bugzy Little <bugzylittle@gmail.com> - 2.2.0-1
 - Update to v2.2.0
 
 * Sun Apr 9 2017 Bugzy Little <bugzylittle@gmail.com> - 2.1.4-0
