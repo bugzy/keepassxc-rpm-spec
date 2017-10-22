@@ -15,13 +15,8 @@ BuildRequires:  qt5-qtx11extras-devel
 BuildRequires:  zlib-devel
 BuildRequires:  libyubikey-devel
 BuildRequires:  ykpers-devel
-%if 0%{?el7}
-BuildRequires:  libgcrypt16-devel
-BuildRequires:  cmake3
-%else
 BuildRequires:  libgcrypt-devel >= 1.6
 BuildRequires:  cmake >= 3.1
-%endif
  
 %description
 KeePassXC is a community fork of KeePassX
