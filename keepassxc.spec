@@ -1,5 +1,5 @@
 Name: keepassxc
-Version: 2.2.1
+Version: 2.2.2
 Release: 1%{?dist}
 Summary: Cross-platform password manager
 Group: User Interface/Desktops
@@ -62,7 +62,7 @@ desktop-file-install \
 	--dir %{buildroot}%{_datadir}/applications \
 	--delete-original \
 	--add-mime-type application/x-keepassxc \
-	%{buildroot}%{_datadir}/applications/%{name}.desktop
+	%{buildroot}%{_datadir}/applications/org.%{name}.desktop
  
 # Associate KDB* files
 cat > x-keepassxc.desktop << EOF
@@ -106,10 +106,16 @@ desktop-file-validate %{_datadir}/applications/keepassxc.desktop &> /dev/null ||
 %{_datadir}/applications/*.desktop
 %{_datadir}/mimelnk/application/*.desktop
 %{_datadir}/mime/packages/*.xml
+%{_datadir}/metainfo/*.xml
 %{_datadir}/icons/hicolor/*
 %{_libdir}/keepassxc/*.so
  
 %changelog
+* Sun Oct 01 2017 Bugzy Little <bugzylittle@gmail.com> - 2.2.2-1
+- Update to v2.2.2
+- Change Desktop filename
+- Add metainfo appdatafile
+
 * Sun Oct 01 2017 Bugzy Little <bugzylittle@gmail.com> - 2.2.1-1
 - Update to v2.2.1
 
