@@ -61,7 +61,7 @@ desktop-file-install \
         --dir %{buildroot}%{_datadir}/applications \
         --delete-original \
         --add-mime-type application/x-keepassxc \
-        %{buildroot}%{_datadir}/applications/%{name}.desktop
+        %{buildroot}%{_datadir}/applications/org.%{name}.desktop
  
 # Associate KDB* files
 cat > x-keepassxc.desktop << EOF
@@ -105,6 +105,7 @@ desktop-file-validate %{_datadir}/applications/keepassxc.desktop &> /dev/null ||
 %{_datadir}/applications/*.desktop
 %{_datadir}/mimelnk/application/*.desktop
 %{_datadir}/mime/packages/*.xml
+%{_datadir}/metainfo/*.xml
 %{_datadir}/icons/hicolor/*
 %{_libdir}/keepassxc/*.so
  
