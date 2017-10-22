@@ -111,7 +111,7 @@ desktop-file-validate %{_datadir}/applications/org.%{name}.desktop &> /dev/null 
 %{_libdir}/keepassxc/*.so
  
 %changelog
-* Sun Oct 01 2017 Bugzy Little <bugzylittle@gmail.com> - 2.2.2-1
+* Sun Oct 22 2017 Bugzy Little <bugzylittle@gmail.com> - 2.2.2-1
 - Update to v2.2.2
 - Change Desktop filename
 - Add metainfo appdatafile
