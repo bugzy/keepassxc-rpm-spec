@@ -1,5 +1,5 @@
 # keepassxc-rpm-spec
-# CentOS Branch
+## CentOS Branch
 This repository contains an rpm specfile used to build CentOS RPMS for KeepassXC
 
 - See https://keepassxc.org/ for more on KeepassXC.
