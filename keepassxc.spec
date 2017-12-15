@@ -95,7 +95,7 @@ update-desktop-database &> /dev/null ||:
 
 %posttrans
 gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-desktop-file-validate %{_datadir}/applications/org.%{name}.desktop &> /dev/null || :
+desktop-file-validate %{_datadir}/applications/org.keepassxc.KeePassXC.desktop &> /dev/null || :
 
 %files
 %doc CHANGELOG
