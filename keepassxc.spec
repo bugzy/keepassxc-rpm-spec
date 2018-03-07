@@ -16,6 +16,8 @@ BuildRequires:  zlib-devel
 BuildRequires:  libyubikey-devel
 BuildRequires:  ykpers-devel
 BuildRequires:  libgcrypt16-devel
+BuildRequires:  libargon2-devel
+BuildRequires:  libcurl-devel
 BuildRequires:  cmake3
  
 %description
@@ -35,7 +37,7 @@ The complete database is always encrypted either with AES (alias Rijndael) or
 Twofish encryption algorithm using a 256 bit key. Therefore the saved
 information can be considered as quite safe.
 
- 
+%global debug_package %{nil}  
 %prep
 %setup -qn %{name}-%{version}
 
