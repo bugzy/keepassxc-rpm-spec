@@ -15,7 +15,7 @@ BuildRequires:  qt5-qtx11extras-devel
 BuildRequires:  zlib-devel
 BuildRequires:  libyubikey-devel
 BuildRequires:  ykpers-devel
-BuildRequires:  libgcrypt-devel >= 1.6
+BuildRequires:  libgcrypt-devel >= 1.7
 BuildRequires:  libargon2-devel
 BuildRequires:  libcurl-devel
 BuildRequires:  libsodium-devel
