@@ -18,6 +18,8 @@ BuildRequires:  ykpers-devel
 BuildRequires:  libgcrypt16-devel
 BuildRequires:  libargon2-devel
 BuildRequires:  libcurl-devel
+BuildRequires:  libsodium-devel
+BuildRequires:  gcc-c++
 BuildRequires:  cmake3
  
 %description
@@ -110,6 +112,7 @@ desktop-file-validate %{_datadir}/applications/org.keepassxc.KeePassXC.desktop &
 %{_datadir}/metainfo/*.xml
 %{_datadir}/icons/hicolor/*
 %{_libdir}/keepassxc/*.so
+%{_mandir}/man1/keepassxc-cli.1*
  
 %changelog
 * Tue Mar 06 2018 Bugzy Little <bugzylittle@gmail.com> - 2.2.4-0
