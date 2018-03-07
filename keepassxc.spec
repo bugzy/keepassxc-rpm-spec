@@ -1,5 +1,5 @@
 Name: keepassxc
-Version: 2.2.4
+Version: 2.3.1
 Release: 0%{?dist}
 Summary: Cross-platform password manager
 Group: User Interface/Desktops
@@ -110,6 +110,9 @@ desktop-file-validate %{_datadir}/applications/org.keepassxc.KeePassXC.desktop &
 %{_libdir}/keepassxc/*.so
  
 %changelog
+* Tue Mar 06 2018 Bugzy Little <bugzylittle@gmail.com> - 2.2.4-0
+- Update to v2.3.1
+
 * Fri Dec 15 2017 Bugzy Little <bugzylittle@gmail.com> - 2.2.4-0
 - Update to v2.2.4
 
