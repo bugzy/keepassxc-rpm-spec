@@ -1,5 +1,5 @@
 Name: keepassxc
-Version: 2.2.4
+Version: 2.3.1
 Release: 0%{?dist}
 Summary: Cross-platform password manager
 Group: User Interface/Desktops
@@ -16,8 +16,11 @@ BuildRequires:  zlib-devel
 BuildRequires:  libyubikey-devel
 BuildRequires:  ykpers-devel
 BuildRequires:  libgcrypt-devel >= 1.6
+BuildRequires:  libargon2-devel
+BuildRequires:  libcurl-devel
 BuildRequires:  cmake >= 3.1
- 
+
+
 %description
 KeePassXC is a community fork of KeePassX
 KeePassXC is an application for people with extremely high demands on secure
@@ -35,7 +38,7 @@ The complete database is always encrypted either with AES (alias Rijndael) or
 Twofish encryption algorithm using a 256 bit key. Therefore the saved
 information can be considered as quite safe.
 
- 
+%global debug_package %{nil} 
 %prep
 %setup -qn %{name}-%{version}
 
@@ -107,9 +110,13 @@ desktop-file-validate %{_datadir}/applications/org.keepassxc.KeePassXC.desktop &
 %{_datadir}/mime/packages/*.xml
 %{_datadir}/metainfo/*.xml
 %{_datadir}/icons/hicolor/*
+%{_mandir}/man1/keepassxc-cli.1.gz
 %{_libdir}/keepassxc/*.so
  
 %changelog
+* Tue Mar 06 2018 Bugzy Little <bugzylittle@gmail.com> - 2.3.1-0
+- Update to v2.3.1
+
 * Fri Dec 15 2017 Bugzy Little <bugzylittle@gmail.com> - 2.2.4-0
 - Update to v2.2.4
 
