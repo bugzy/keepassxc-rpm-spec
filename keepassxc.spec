@@ -18,6 +18,8 @@ BuildRequires:  ykpers-devel
 BuildRequires:  libgcrypt-devel >= 1.6
 BuildRequires:  libargon2-devel
 BuildRequires:  libcurl-devel
+BuildRequires:  libsodium-devel
+BuildRequires:  gcc-c++
 BuildRequires:  cmake >= 3.1
 
 
@@ -110,7 +112,7 @@ desktop-file-validate %{_datadir}/applications/org.keepassxc.KeePassXC.desktop &
 %{_datadir}/mime/packages/*.xml
 %{_datadir}/metainfo/*.xml
 %{_datadir}/icons/hicolor/*
-%{_mandir}/man1/keepassxc-cli.1.gz
+%{_mandir}/man1/keepassxc-cli.1.*
 %{_libdir}/keepassxc/*.so
  
 %changelog
