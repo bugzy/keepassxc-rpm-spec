@@ -1,5 +1,5 @@
 Name: keepassxc
-Version: 2.3.1
+Version: 2.3.3
 Release: 0%{?dist}
 Summary: Cross-platform password manager
 Group: User Interface/Desktops
@@ -51,9 +51,7 @@ cmake .. \
 	-DCMAKE_INSTALL_PREFIX=/usr \
 	-DCMAKE_VERBOSE_MAKEFILE=OFF \
 	-DWITH_TESTS=OFF \
-	-DWITH_XC_HTTP=ON \
-	-DWITH_XC_YUBIKEY=ON \
-	-DWITH_XC_AUTOTYPE=ON \
+	-DWITH_XC_ALL=ON \
 	-DCMAKE_BUILD_TYPE=Release
  
 make %{?_smp_mflags}
@@ -106,6 +104,7 @@ desktop-file-validate %{_datadir}/applications/org.keepassxc.KeePassXC.desktop &
 %license COPYING LICENSE*
 %{_bindir}/keepassxc
 %{_bindir}/keepassxc-cli
+%{_bindir}/keepassxc-proxy
 %{_datadir}/keepassxc
 %{_datadir}/applications/*.desktop
 %{_datadir}/mimelnk/application/*.desktop
@@ -116,6 +115,22 @@ desktop-file-validate %{_datadir}/applications/org.keepassxc.KeePassXC.desktop &
 %{_libdir}/keepassxc/*.so
  
 %changelog
+* Tue Mar 06 2018 Bugzy Little <bugzylittle@gmail.com> - 2.3.3-0
+- Update to v2.3.3
+- Fix crash when browser integration is enabled [#1923]
+- Enable high entropy ASLR on Windows [#1747]
+- Enhance favicon fetching [#1786]
+- Fix crash on Windows due to Auto-Type [#1691]
+- Fix dark tray icon changing all icons [#1680]
+- Fix --pw-stdin not using getPassword function [#1686]
+- Fix placeholders being resolved in notes [#1907]
+- Enable auto-type start delay to be configurable [#1908]
+- Browser: Fix native messaging reply size [#1719]
+- Browser: Increase maximum buffer size [#1720]
+- Browser: Enhance usability and functionality [#1810, #1822, #1830, #1884, #1906]
+- SSH Agent: Parse aes-256-cbc/ctr keys [#1682]
+- SSH Agent: Enhance usability and functionality [#1677, #1679, #1681, #1787]
+
 * Tue Mar 06 2018 Bugzy Little <bugzylittle@gmail.com> - 2.3.1-0
 - Update to v2.3.1
 
