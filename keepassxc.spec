@@ -1,5 +1,5 @@
 Name: keepassxc
-Version: 2.2.4
+Version: 2.3.3
 Release: 1%{?dist}
 Summary: Cross-platform password manager
 Group: User Interface/Desktops
@@ -15,9 +15,14 @@ BuildRequires:  qt5-qtx11extras-devel
 BuildRequires:  zlib-devel
 BuildRequires:  libyubikey-devel
 BuildRequires:  ykpers-devel
-BuildRequires:  libgcrypt-devel >= 1.6
+BuildRequires:  libgcrypt-devel >= 1.7
+BuildRequires:  libargon2-devel
+BuildRequires:  libcurl-devel
+BuildRequires:  libsodium-devel
+BuildRequires:  gcc-c++
 BuildRequires:  cmake >= 3.1
- 
+
+
 %description
 KeePassXC is a community fork of KeePassX
 KeePassXC is an application for people with extremely high demands on secure
@@ -35,22 +40,19 @@ The complete database is always encrypted either with AES (alias Rijndael) or
 Twofish encryption algorithm using a 256 bit key. Therefore the saved
 information can be considered as quite safe.
 
- 
+%global debug_package %{nil} 
 %prep
 %setup -qn %{name}-%{version}
 
 %build
 mkdir build
 cd build
-
-%cmake .. \
-	-DCMAKE_INSTALL_PREFIX=/usr \
-	-DCMAKE_VERBOSE_MAKEFILE=OFF \
-	-DWITH_TESTS=OFF \
-	-DWITH_XC_HTTP=ON \
-	-DWITH_XC_YUBIKEY=ON \
-	-DWITH_XC_AUTOTYPE=ON \
-	-DCMAKE_BUILD_TYPE=Release
+cmake .. \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DCMAKE_VERBOSE_MAKEFILE=OFF \
+        -DWITH_TESTS=OFF \
+        -DWITH_XC_ALL=ON \
+        -DCMAKE_BUILD_TYPE=Release
  
 make %{?_smp_mflags}
  
@@ -59,10 +61,10 @@ cd build
 make install DESTDIR=%{buildroot}
  
 desktop-file-install \
-	--dir %{buildroot}%{_datadir}/applications \
-	--delete-original \
-	--add-mime-type application/x-keepassxc \
-	%{buildroot}%{_datadir}/applications/org.keepassxc.KeePassXC.desktop
+        --dir %{buildroot}%{_datadir}/applications \
+        --delete-original \
+        --add-mime-type application/x-keepassxc \
+        %{buildroot}%{_datadir}/applications/org.keepassxc.KeePassXC.desktop
  
 # Associate KDB* files
 cat > x-keepassxc.desktop << EOF
@@ -75,7 +77,7 @@ Patterns=*.kdb;*.KDB;*.kdbx;*.KDBX*
 Type=MimeType
 EOF
 install -D -m 644 -p x-keepassxc.desktop \
-	%{buildroot}%{_datadir}/mimelnk/application/x-keepassxc.desktop
+        %{buildroot}%{_datadir}/mimelnk/application/x-keepassxc.desktop
 
 %find_lang keepassx --with-qt
 
@@ -102,31 +104,36 @@ desktop-file-validate %{_datadir}/applications/org.keepassxc.KeePassXC.desktop &
 %license COPYING LICENSE*
 %{_bindir}/keepassxc
 %{_bindir}/keepassxc-cli
+%{_bindir}/keepassxc-proxy
 %{_datadir}/keepassxc
 %{_datadir}/applications/*.desktop
 %{_datadir}/mimelnk/application/*.desktop
 %{_datadir}/mime/packages/*.xml
 %{_datadir}/metainfo/*.xml
 %{_datadir}/icons/hicolor/*
+%{_mandir}/man1/keepassxc-cli.1.*
 %{_libdir}/keepassxc/*.so
  
 %changelog
-%changelog
+* Tue Mar 06 2018 Bugzy Little <bugzylittle@gmail.com> - 2.3.3-1
+- Update to v2.3.3
+
+* Tue Mar 06 2018 Bugzy Little <bugzylittle@gmail.com> - 2.3.1-1
+- Update to v2.3.1
+
 * Fri Dec 15 2017 Bugzy Little <bugzylittle@gmail.com> - 2.2.4-1
 - Update to v2.2.4
 
 * Sun Oct 22 2017 Bugzy Little <bugzylittle@gmail.com> - 2.2.2-1
 - Update to v2.2.2
-- Change Desktop filename
-- Add metainfo appdatafile
 
 * Sun Oct 01 2017 Bugzy Little <bugzylittle@gmail.com> - 2.2.1-1
 - Update to v2.2.1
 
-* Sun Jun 25 2017 Bugzy Little <bugzylittle@gmail.com> - 2.2.0-0
+* Sun Jun 25 2017 Bugzy Little <bugzylittle@gmail.com> - 2.2.0-1
 - Update to v2.2.0
 
-* Sun Apr 9 2017 Bugzy Little <bugzylittle@gmail.com> - 2.1.4-0
+* Sun Apr 9 2017 Bugzy Little <bugzylittle@gmail.com> - 2.1.4-1
 - Change discription to match official package
 - Modifying release tag so that there is no conflict with official package
 
@@ -164,3 +171,4 @@ desktop-file-validate %{_datadir}/applications/org.keepassxc.KeePassXC.desktop &
 * Mon Dec 19 2016 Bugzy Little <bugzylittle@gmail.com> - 2.0.3
 - Initial build for keepassxc v2.0.3
 - initial package
+
