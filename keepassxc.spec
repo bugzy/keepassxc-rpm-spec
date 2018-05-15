@@ -15,7 +15,7 @@ BuildRequires:  qt5-qtx11extras-devel
 BuildRequires:  zlib-devel
 BuildRequires:  libyubikey-devel
 BuildRequires:  ykpers-devel
-BuildRequires:  libgcrypt17-devel
+BuildRequires:  libgcrypt-devel >= 1.7
 BuildRequires:  libargon2-devel
 BuildRequires:  libcurl-devel
 BuildRequires:  libsodium-devel
@@ -50,9 +50,7 @@ cmake3 .. \
         -DCMAKE_INSTALL_PREFIX=/usr \
         -DCMAKE_VERBOSE_MAKEFILE=OFF \
         -DWITH_TESTS=OFF \
-        -DWITH_XC_HTTP=ON \
-        -DWITH_XC_YUBIKEY=ON \
-        -DWITH_XC_AUTOTYPE=ON \
+        -DWITH_XC_ALL=ON \
         -DCMAKE_BUILD_TYPE=Release
  
 make %{?_smp_mflags}
@@ -105,6 +103,7 @@ desktop-file-validate %{_datadir}/applications/org.keepassxc.KeePassXC.desktop &
 %license COPYING LICENSE*
 %{_bindir}/keepassxc
 %{_bindir}/keepassxc-cli
+%{_bindir}/keepassxc-proxy
 %{_datadir}/keepassxc
 %{_datadir}/applications/*.desktop
 %{_datadir}/mimelnk/application/*.desktop
@@ -115,7 +114,11 @@ desktop-file-validate %{_datadir}/applications/org.keepassxc.KeePassXC.desktop &
 %{_mandir}/man1/keepassxc-cli.1*
  
 %changelog
-* Tue Mar 06 2018 Bugzy Little <bugzylittle@gmail.com> - 2.2.4-0
+
+* Tue May 15 2018 Bugzy Little <bugzylittle@gmail.com> - 2.3.3-0
+- Update to v2.3.3
+
+* Tue Mar 06 2018 Bugzy Little <bugzylittle@gmail.com> - 2.3.1-0
 - Update to v2.3.1
 
 * Fri Dec 15 2017 Bugzy Little <bugzylittle@gmail.com> - 2.2.4-0
