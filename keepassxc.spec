@@ -115,7 +115,7 @@ desktop-file-validate %{_datadir}/applications/org.keepassxc.KeePassXC.desktop &
 %{_libdir}/keepassxc/*.so
  
 %changelog
-* Tue Mar 06 2018 Bugzy Little <bugzylittle@gmail.com> - 2.3.3-1
+* Tue May 08 2018 Bugzy Little <bugzylittle@gmail.com> - 2.3.3-1
 - Update to v2.3.3
 
 * Tue Mar 06 2018 Bugzy Little <bugzylittle@gmail.com> - 2.3.1-1
