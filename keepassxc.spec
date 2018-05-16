@@ -115,7 +115,7 @@ desktop-file-validate %{_datadir}/applications/org.keepassxc.KeePassXC.desktop &
 %{_libdir}/keepassxc/*.so
  
 %changelog
-* Tue Mar 06 2018 Bugzy Little <bugzylittle@gmail.com> - 2.3.3-0
+* Tue May 08 2018 Bugzy Little <bugzylittle@gmail.com> - 2.3.3-0
 - Update to v2.3.3
 - Fix crash when browser integration is enabled [#1923]
 - Enable high entropy ASLR on Windows [#1747]
