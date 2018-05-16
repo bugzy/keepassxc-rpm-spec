@@ -1,5 +1,5 @@
 Name: keepassxc
-Version: 2.3.1
+Version: 2.3.3
 Release: 0%{?dist}
 Summary: Cross-platform password manager
 Group: User Interface/Desktops
